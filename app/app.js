@@ -1,6 +1,8 @@
+'use strict';
+// @ts-ignore
 var express = require('express');
+//var reload = require('reload');
 var app = express();
-
 var dateFile = require('../data/data.json');
 
 app.set('port', process.env.PORT || 3000);
@@ -16,8 +18,9 @@ app.get('/', function(req,res,next) {
 
 var server = app.listen(app.get('port'), function() {
     console.log('Server listening on port '+app.get('port'));
-})
+});
 
+//reload(server, app);
 
 // var http = require('http');
 // // var express = require('express');
