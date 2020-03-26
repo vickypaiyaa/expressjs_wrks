@@ -2,22 +2,20 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/speakers', function(req,res) {
-    var info = '';
-    var dateFile = req.app.get('appData');
-    dateFile.speakers.forEach(function(item) {
-        info += `
-        <li>
-            <h2>${item.name}</h2>
-            <img src = "/images/speakers/${item.shortname}_tn.jpg" alt="background">
-            <p>${item.summary}</p>
-        </li>
-        `;
+    var data = req.app.get('appData');
+    var pagePhotos = [];
+    var pageSpeakers = data.speakers;
+
+    data.speakers.forEach(function(item) {
+        pagePhotos = pagePhotos.concat(item.artwork);
     });
-    res.send(`
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <h1>Meeting</h1>
-    ${info}
-    `)
+
+    res.render('speakers', {
+        pageTitle: 'Speakers',
+        artwork: pagePhotos, 
+        speakers: pageSpeakers,
+        pageID: 'speakers '
+    });
 });
 
 router.get('/speakers/:speakerid', function(req,res) {
