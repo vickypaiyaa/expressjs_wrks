@@ -4,35 +4,10 @@ var app = express();
 var dateFile = require('../data/data.json');
 
 app.set('port', process.env.PORT || 3000);
+app.set('appData', dateFile);
 
-app.get('/', function(req,res) {
-    res.send(`
-    <h1>Welcome</h1>
-    <p>To the express world </p>
-    `)
-});
-
-app.get('/speakers', function(req,res) {
-    var info = '';
-    dateFile.speakers.forEach(function(item) {
-        info += `
-        <li>
-            <h2>${item.name}</h2>
-        <p>${item.summary}</p>
-        </li>
-        `;
-    });
-    res.send(`<h1>Meeting</h1>${info}`)
-});
-
-app.get('/speakers/:speakerid', function(req,res) {
-    var speaker = dateFile.speakers[req.params.speakerid];
-    res.send(`
-        <h2>${speaker.title}</h2>
-        <h3>${speaker.name}</h3>
-        <p>${speaker.summary}</p>
-        `)
-});
+app.use(require('./routes/index'));
+app.use(require('./routes/speakers'));
 
 app.get('/', function(req,res,next) {
     res.send('<h2>Test Page</h2>')
