@@ -7,9 +7,10 @@ var dateFile = require('../data/data.json');
 
 app.set('port', process.env.PORT || 3000);
 app.set('appData', dateFile);
-
 app.set('view engine','ejs');
 app.set('views', 'app/views');
+
+app.locals.siteTitle = 'Welcome Meetups';
 
 app.use(express.static('app/public'));
 app.use(require('./routes/index'));
