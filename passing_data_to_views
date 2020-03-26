@@ -1,5 +1,4 @@
-Data in views
+Condition and Loops
 
-* res.render('index', {data})
-* app.locals.???={}
-* <%= data %>
+EJS - Conditional statements
+EJS - Loops
