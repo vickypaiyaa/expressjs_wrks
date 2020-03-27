@@ -5,11 +5,12 @@
   "main": "app/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon -e css,ejs,js,json --watch app"
+    "start": "nodemon -e css,ejs,js,json --watch app --ignore feedback.json"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
     "http": "0.0.1-security",
