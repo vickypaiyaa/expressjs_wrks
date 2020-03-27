@@ -16,6 +16,7 @@ app.locals.allSpeakers = dateFile.speakers;
 app.use(express.static('app/public'));
 app.use(require('./routes/index'));
 app.use(require('./routes/speakers'));
+app.use(require('./routes/feedback'));
 
 app.get('/', function(req,res,next) {
     res.send('<h2>Test Page</h2>')

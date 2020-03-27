@@ -2,7 +2,10 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/speakers', function(req,res) {
+    //console.log(req.app);
+    debugger;
     var data = req.app.get('appData');
+    console.log(data);
     var pagePhotos = [];
     var pageSpeakers = data.speakers;
 
