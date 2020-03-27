@@ -14,20 +14,28 @@ router.get('/speakers', function(req,res) {
         pageTitle: 'Speakers',
         artwork: pagePhotos, 
         speakers: pageSpeakers,
-        pageID: 'speakers '
+        pageID: 'speakersList'
     });
 });
 
 router.get('/speakers/:speakerid', function(req,res) {
-    var dateFile = req.app.get('appData');
-    var speaker = dateFile.speakers[req.params.speakerid];
-    res.send(`
-        <link rel="stylesheet" type="text/css" href="/css/style.css">
-        <h2>${speaker.title}</h2>
-        <img src = "/images/speakers/${speaker.shortname}_tn.jpg" alt="background">
-        <h3>${speaker.name}</h3>
-        <p>${speaker.summary}</p>
-        `)
+    var data = req.app.get('appData');
+    var pagePhotos = [];
+    var pageSpeakers = [];
+
+    data.speakers.forEach(function(item) {
+        if(item.shortname == req.params.speakerid) {
+            pageSpeakers.push(item);
+            pagePhotos = pagePhotos.concat(item.artwork);
+        }
+    });
+
+    res.render('speakers', {
+        pageTitle: 'Speakers Information',
+        artwork: pagePhotos, 
+        speakers: pageSpeakers,
+        pageID: 'speakerDetail'
+    });
 });
 
 module.exports = router;
