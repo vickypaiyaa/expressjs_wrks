@@ -1,8 +1,3 @@
-Processing Forms
+Delete Route
 
-Handling POST
-verbs -GET, POST, DELETE, UPDATE
-POST Send Data
-Handle Submit With jQuery
-Use body-parser middleware
-use fs to write files
+Delete Recent feedback using DELETE request method
